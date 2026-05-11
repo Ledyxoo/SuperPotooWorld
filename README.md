@@ -1,32 +1,32 @@
 # Super Potoo World
 
-Un jeu de plateforme 2D rétro développé en C, utilisant SDL2. Ce projet a été réalisé dans le cadre d'un projet d'école d'ingénieur.
+An old-school 2D platformer developed in C using SDL2. This project was completed during my first year of engineering school.
 
-## Fonctionnalités
+## Features
 
-- **Gameplay Classique** : Incarnez Potoo dans un monde de plateformes exigeant.
-- **Ennemis Variés** : Affrontez des noisettes magiques, des démons et le redoutable MSN (Méga Super Nut).
-- **Mondes Multiples** : Explorez les Montagnes, le Lac, les Bateaux Volants et le Volcan.
-- **Moteur Physique Custom** : Utilise le `PlatformerEngine` pour des collisions et des mouvements fluides.
-- **Système d'Animation** : Rendu dynamique via le `RenderingEngine`.
+- **Classic Gameplay**: Play as Potoo in a demanding platforming world.
+- **Varied Enemies**: Face magical nuts, demons, and the fearsome MSN (Mega Super Nut).
+- **Multiple Worlds**: Explore the Mountains, Lake, Flying Ships, and Volcano.
+- **Custom Physics Engine**: Uses `PlatformerEngine` for smooth movement and collision handling. This engine was not developed by me.
+- **Animation System**: Dynamic rendering powered by `RenderingEngine`.
 
-## Prérequis
+## Requirements
 
-Le projet utilise **vcpkg** pour la gestion des dépendances sur Windows et les paquets système sur Linux.
+The project uses **vcpkg** for dependency management on Windows and system packages on Linux.
 
 ### Linux (Debian/Ubuntu)
-Installez les bibliothèques de développement SDL2 et OpenMP :
+Install the SDL2 and OpenMP development libraries:
 ```bash
 sudo apt update
 sudo apt install build-essential cmake libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libomp-dev
 ```
 
 ### Windows
-1. Installez [CMake](https://cmake.org/download/).
-2. Installez [vcpkg](https://github.com/microsoft/vcpkg).
-3. Le projet téléchargera automatiquement les dépendances (SDL2, etc.) lors de la configuration CMake.
+1. Install [CMake](https://cmake.org/download/).
+2. Install [vcpkg](https://github.com/microsoft/vcpkg).
+3. The project will automatically fetch its dependencies (SDL2, etc.) during CMake configuration.
 
-## Compilation
+## Build
 
 ### Linux
 ```bash
@@ -39,18 +39,17 @@ make
 ```powershell
 mkdir build; cd build
 cmake .. -DCMAKE_TOOLCHAIN_FILE=[PATH_TO_VCPKG]/scripts/buildsystems/vcpkg.cmake
-# Ouvrez ensuite le fichier .sln généré dans Visual Studio et compilez le projet.
+# Then open the generated .sln file in Visual Studio and build the project.
 ```
 
-## Intégration Continue
-Ce projet utilise **GitHub Actions** pour vérifier la compilation sur Linux et Windows à chaque commit.
+## Continuous Integration
+This project uses **GitHub Actions** to verify builds on Linux and Windows on every commit.
 
-## Structure du Projet
-- `src/` : Code source (`.c`).
-- `include/` : Fichiers d'en-tête (`.h`).
-- `Assets/` : Ressources (images, niveaux, polices).
-- `external/` : Bibliothèques et moteurs tiers.
+## Project Structure
+- `src/`: Source code (`.c`).
+- `include/`: Header files (`.h`).
+- `Assets/`: Resources (images, levels, fonts).
+- `external/`: Third-party libraries and engines.
 
-## Auteurs
-- Killian de Saint Jores
-- Baptiste Barbier--Fradin
+## Authors
+- Ledyxoo
