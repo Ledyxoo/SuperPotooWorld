@@ -3,6 +3,7 @@ name: Build Super Potoo World
 on:
   push:
     branches: [ main, master ]
+    tags: [ 'v*' ]
   pull_request:
     branches: [ main, master ]
 
@@ -15,7 +16,7 @@ jobs:
       - name: Install SDL2
         run: |
           sudo apt-get update
-          sudo apt-get install -y cmake libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
+          sudo apt-get install -y cmake libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libomp-dev
 
       - name: Configure CMake
         run: cmake -S . -B build
@@ -25,16 +26,17 @@ jobs:
 
       - name: Prepare Release Linux
         run: |
-          mkdir -p release-linux
-          cp build/SuperPotooWorld release-linux/
-          cp -r Assets release-linux/
-          cp src/*.mp3 release-linux/
+          mkdir -p SuperPotooWorld-Linux
+          cp build/SuperPotooWorld SuperPotooWorld-Linux/
+          cp -r Assets SuperPotooWorld-Linux/
+          cp src/*.mp3 SuperPotooWorld-Linux/
+          tar -czvf SuperPotooWorld-Linux.tar.gz SuperPotooWorld-Linux/
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: SuperPotooWorld-Linux
-          path: release-linux/
+          path: SuperPotooWorld-Linux.tar.gz
 
   build-windows:
     runs-on: windows-latest
@@ -49,15 +51,49 @@ jobs:
 
       - name: Prepare Release Windows
         run: |
-          mkdir release-windows
-          cp build/Release/SuperPotooWorld.exe release-windows/
-          cp -r Assets release-windows/
-          cp src/*.mp3 release-windows/
-          # Copie des DLLs (Vcpkg les gère souvent, mais pour être sûr)
-          cp build/Release/*.dll release-windows/ 2>$null || true
+          mkdir SuperPotooWorld-Windows
+          cp build/Release/SuperPotooWorld.exe SuperPotooWorld-Windows/
+          cp -r Assets SuperPotooWorld-Windows/
+          cp src/*.mp3 SuperPotooWorld-Windows/
+          cp build/Release/*.dll SuperPotooWorld-Windows/ 2>$null || true
+          
+          # Tentative de récupération de vcomp140.dll (OpenMP) pour la portabilité
+          $vcomp = Get-ChildItem -Path "C:\Program Files\Microsoft Visual Studio" -Filter vcomp140.dll -Recurse | Where-Object { $_.FullName -like "*x64*" -and $_.FullName -like "*Redist*" } | Select-Object -First 1 -ExpandProperty FullName
+          if ($vcomp) { cp $vcomp SuperPotooWorld-Windows/ }
+          
+          Compress-Archive -Path SuperPotooWorld-Windows/* -DestinationPath SuperPotooWorld-Windows.zip
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: SuperPotooWorld-Windows
-          path: release-windows/
+          path: SuperPotooWorld-Windows.zip
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: [build-linux, build-windows]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download Linux Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: SuperPotooWorld-Linux
+
+      - name: Download Windows Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: SuperPotooWorld-Windows
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            SuperPotooWorld-Linux.tar.gz
+            SuperPotooWorld-Windows.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
