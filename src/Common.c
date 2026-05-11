@@ -39,27 +39,27 @@ void LevelData_Init()
     int i = 0;
     g_levelData[i].title = u8"Montagnes pointues";
     g_levelData[i].theme = THEME_MOUNTAINS;
-    g_levelData[i].path = SPW_ResolveAssetPath("../Assets/Level/Level01.txt");
+    g_levelData[i].path = SPW_ResolveAssetPath("Assets/Level/Level01.txt");
     i++;
 
     g_levelData[i].title = u8"Lac Bleu";
     g_levelData[i].theme = THEME_LAKE;
-    g_levelData[i].path = SPW_ResolveAssetPath("../Assets/Level/Level02.txt");
+    g_levelData[i].path = SPW_ResolveAssetPath("Assets/Level/Level02.txt");
     i++;
 
     g_levelData[i].title = u8"Bateaux volants";
     g_levelData[i].theme = THEME_SKY;
-    g_levelData[i].path = SPW_ResolveAssetPath("../Assets/Level/Level03.txt");
+    g_levelData[i].path = SPW_ResolveAssetPath("Assets/Level/Level03.txt");
     i++;
 
     g_levelData[i].title = u8"Volcan de la Mort";
     g_levelData[i].theme = THEME_VOLCAN;
-    g_levelData[i].path = SPW_ResolveAssetPath("../Assets/Level/Volcan.txt");
+    g_levelData[i].path = SPW_ResolveAssetPath("Assets/Level/Volcan.txt");
     i++;
 
     g_levelData[i].title = u8"Démo";
     g_levelData[i].theme = THEME_LAKE;
-    g_levelData[i].path = SPW_ResolveAssetPath("../Assets/Level/LevelDemo.txt");
+    g_levelData[i].path = SPW_ResolveAssetPath("Assets/Level/LevelDemo.txt");
     i++;
 
    

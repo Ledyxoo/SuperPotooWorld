@@ -11,20 +11,20 @@ AssetManager *AssetManager_New(SDL_Renderer *renderer, int theme)
     switch (theme)
     {
     case THEME_LAKE:
-        assets->m_themeFolder = SPW_ResolveAssetPath("../Assets/Theme_Lake");
+        assets->m_themeFolder = SPW_ResolveAssetPath("Assets/Theme_Lake");
         break;
 
     case THEME_SKY:
-        assets->m_themeFolder = SPW_ResolveAssetPath("../Assets/Theme_Sky");
+        assets->m_themeFolder = SPW_ResolveAssetPath("Assets/Theme_Sky");
         break;
 
     case THEME_VOLCAN:
-        assets->m_themeFolder = SPW_ResolveAssetPath("../Assets/Theme_Volcan");
+        assets->m_themeFolder = SPW_ResolveAssetPath("Assets/Theme_Volcan");
         break;
 
     case THEME_MOUNTAINS:
     default:
-        assets->m_themeFolder = SPW_ResolveAssetPath("../Assets/Theme_Mountains");
+        assets->m_themeFolder = SPW_ResolveAssetPath("Assets/Theme_Mountains");
         break;
     }
 
@@ -87,7 +87,7 @@ RE_Atlas *AssetManager_GetPlayerAtlas(AssetManager *assets)
     {
         atlases->m_player = RE_Atlas_New(
             assets->m_renderer,
-            SPW_ResolveAssetPath("../Assets/Atlas/Player.json")
+            SPW_ResolveAssetPath("Assets/Atlas/Player.json")
         );
         AssertNew(atlases->m_player);
     }
@@ -101,7 +101,7 @@ RE_Atlas *AssetManager_GetEnemyAtlas(AssetManager *assets)
     {
         atlases->m_enemy = RE_Atlas_New(
             assets->m_renderer,
-            SPW_ResolveAssetPath("../Assets/Atlas/Enemy.json")
+            SPW_ResolveAssetPath("Assets/Atlas/Enemy.json")
         );
         AssertNew(atlases->m_enemy);
     }
@@ -114,7 +114,7 @@ RE_Atlas* AssetManager_GetDemonAtlas(AssetManager* assets)
     {
         atlases->m_demon = RE_Atlas_New(
             assets->m_renderer,
-            SPW_ResolveAssetPath("../Assets/Atlas/Demon.json")
+            SPW_ResolveAssetPath("Assets/Atlas/Demon.json")
         );
         AssertNew(atlases->m_demon);
     }
@@ -128,7 +128,7 @@ RE_Atlas* AssetManager_GetMSNAtlas(AssetManager* assets)
     {
         atlases->m_MSN = RE_Atlas_New(
             assets->m_renderer,
-            SPW_ResolveAssetPath("../Assets/Atlas/MSN.json")
+            SPW_ResolveAssetPath("Assets/Atlas/MSN.json")
         );
         AssertNew(atlases->m_MSN);
     }
@@ -142,7 +142,7 @@ RE_Atlas *AssetManager_GetLogoAtlas(AssetManager *assets)
     {
         atlases->m_logo = RE_Atlas_New(
             assets->m_renderer,
-            SPW_ResolveAssetPath("../Assets/Atlas/Logo.json")
+            SPW_ResolveAssetPath("Assets/Atlas/Logo.json")
         );
         AssertNew(atlases->m_logo);
     }
@@ -156,7 +156,7 @@ RE_Atlas *AssetManager_GetTerrainAtlas(AssetManager *assets)
     {
         atlases->m_terrain = RE_Atlas_New(
             assets->m_renderer,
-            SPW_ResolveAssetPath("../Assets/Atlas/Terrain.json")
+            SPW_ResolveAssetPath("Assets/Atlas/Terrain.json")
         );
         AssertNew(atlases->m_terrain);
     }
@@ -170,7 +170,7 @@ RE_Atlas *AssetManager_GetUIAtlas(AssetManager *assets)
     {
         atlases->m_ui = RE_Atlas_New(
             assets->m_renderer,
-            SPW_ResolveAssetPath("../Assets/Atlas/UI.json")
+            SPW_ResolveAssetPath("Assets/Atlas/UI.json")
         );
         AssertNew(atlases->m_ui);
     }
@@ -184,7 +184,7 @@ RE_Atlas *AssetManager_GetCollectableAtlas(AssetManager *assets)
     {
         atlases->m_collectable = RE_Atlas_New(
             assets->m_renderer,
-            SPW_ResolveAssetPath("../Assets/Atlas/Collectable.json")
+            SPW_ResolveAssetPath("Assets/Atlas/Collectable.json")
         );
         AssertNew(atlases->m_collectable);
     }
@@ -218,7 +218,7 @@ TTF_Font *AssetManager_GetLargeFont(AssetManager *assets)
     if (!fonts->m_large)
     {
         fonts->m_large = TTF_OpenFont(
-            SPW_ResolveAssetPath("../Assets/Font/Berlin_Sans_FB_Demi_Bold.ttf"),
+            SPW_ResolveAssetPath("Assets/Font/Berlin_Sans_FB_Demi_Bold.ttf"),
             64
         );
         AssertNew(fonts->m_large);
@@ -232,7 +232,7 @@ TTF_Font *AssetManager_GetNormalFont(AssetManager *assets)
     if (!fonts->m_normal)
     {
         fonts->m_normal = TTF_OpenFont(
-            SPW_ResolveAssetPath("../Assets/Font/Berlin_Sans_FB_Demi_Bold.ttf"),
+            SPW_ResolveAssetPath("Assets/Font/Berlin_Sans_FB_Demi_Bold.ttf"),
             28
         );
         AssertNew(fonts->m_normal);

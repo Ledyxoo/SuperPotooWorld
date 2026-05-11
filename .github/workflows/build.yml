@@ -23,11 +23,18 @@ jobs:
       - name: Build
         run: cmake --build build --config Release
 
+      - name: Prepare Release Linux
+        run: |
+          mkdir -p release-linux
+          cp build/SuperPotooWorld release-linux/
+          cp -r Assets release-linux/
+          cp src/*.mp3 release-linux/
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: SuperPotooWorld-Linux
-          path: build/SuperPotooWorld
+          path: release-linux/
 
   build-windows:
     runs-on: windows-latest
@@ -40,8 +47,17 @@ jobs:
       - name: Build
         run: cmake --build build --config Release
 
+      - name: Prepare Release Windows
+        run: |
+          mkdir release-windows
+          cp build/Release/SuperPotooWorld.exe release-windows/
+          cp -r Assets release-windows/
+          cp src/*.mp3 release-windows/
+          # Copie des DLLs (Vcpkg les gère souvent, mais pour être sûr)
+          cp build/Release/*.dll release-windows/ 2>$null || true
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: SuperPotooWorld-Windows
-          path: build/Release/SuperPotooWorld.exe
+          path: release-windows/
