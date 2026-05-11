@@ -1,0 +1,14 @@
+{
+    "texture": "MSN.png",
+    "geometry": {
+        "rowCount": 1,
+        "colCount": 5,
+        "width": 80,
+        "height": 80
+    },
+    "parts": [
+        {"name": "MSNIdle", "frames": [0]},
+        {"name": "MSNSpinning", "frames": [0,1,2,3]},
+        {"name": "MSNDying", "frames": [4]}
+    ]
+}
